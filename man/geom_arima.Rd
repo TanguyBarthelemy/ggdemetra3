@@ -76,11 +76,11 @@ p_sa_ipi_fr <- ggplot(data = ipi_c_eu_df, mapping = aes(x = date, y = FR)) +
     labs(title = "Seasonal adjustment of the French industrial production index",
          x = "time", y = NULL) +
     geom_sa(color = "red", message = FALSE)
-         
+
 # To add the ARIMA model
-p_sa_ipi_fr + 
+p_sa_ipi_fr +
     geom_arima(geom = "label",
-               x_arima = - Inf, y_arima = -Inf, 
+               x_arima = - Inf, y_arima = -Inf,
                vjust = -1, hjust = -0.1,
-               message = FALSE)          
+               message = FALSE)
 }

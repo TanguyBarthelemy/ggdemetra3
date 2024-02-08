@@ -95,8 +95,8 @@ p_ipi_fr +
 
 # To add the forecasts of the input data and the seasonal adjusted series:
 p_sa <- p_ipi_fr +
-    geom_sa(component = "y_f", linetype = 2, message = FALSE) + 
+    geom_sa(component = "y_f", linetype = 2, message = FALSE) +
     geom_sa(component = "sa", color = "red", message = FALSE) +
     geom_sa(component = "sa_f", color = "red", linetype = 2, message = FALSE)
-p_sa 
+p_sa
 }
