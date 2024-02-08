@@ -10,18 +10,18 @@ seasonal_adjustment <- function(data,
                         choices = c("x13","tramoseats","x11-extended", "fractionalairline",
                                     "fractionalairlineestimation",  "multiairline", "stl"))
     data <- data[order(data$x), ]
-    
+
     use_previous_model <- pre_check_param(frequency = frequency, method = method,
                                           spec = spec, new_data = new_data,
                                           data_y = data$y)
-    
+
     if(use_previous_model){
         sa <- .demetra$sa
         data_ts <- .demetra$data_ts
     }else{
         data_ts <- .demetra$data_ts <-
             dataframe2ts(data = data, frequency = frequency, message = message)
-        
+
         if (method == "x13") {
             if (is.null(spec)) {
                 sa <- rjd3x13::jx13(data_ts)
@@ -60,15 +60,15 @@ seasonal_adjustment <- function(data,
         .demetra$method <- method
         .demetra$data_y <- data$y
     }
-    
-    
+
+
     # data$sa_model <- list(sa)
     list(data = data, sa = sa, dates = as.numeric(time(data_ts)),
          frequency = frequency(data_ts))
 }
 dataframe2ts <- function(data, frequency = NULL, message = TRUE){
     dates <- data$x
-    
+
     if (inherits(dates, "Date")) {
         years <- as.numeric(format(dates, format = "%Y"))
         months <- as.numeric(format(dates, format = "%m"))
@@ -89,14 +89,14 @@ dataframe2ts <- function(data, frequency = NULL, message = TRUE){
         }
         first_date <- dates[1]
     }
-    
+
     .demetra$frequency <- frequency
     if (frequency %in% c(2, 4, 6, 12)) {
         ts(data$y, start = first_date, frequency = frequency)
     } else {
         data$y
     }
-    
+
 }
 ts2dataframe <- function(x){
     if (is.ts(x) & !is.mts(x)) {
@@ -105,11 +105,11 @@ ts2dataframe <- function(x){
     }else{
         NULL
     }
-    
+
 }
 
 .demetra <- new.env(parent = emptyenv())
-.demetra$frequency <- 
+.demetra$frequency <-
     .demetra$method <-
     .demetra$sa <-
     .demetra$spec <-
@@ -117,7 +117,7 @@ ts2dataframe <- function(x){
     .demetra$data_y <-
     NULL
 
-pre_check_param <- function(frequency = NULL,  
+pre_check_param <- function(frequency = NULL,
                             method = c("x13","tramoseats"),
                             spec = NULL,
                             new_data = TRUE,
@@ -128,7 +128,7 @@ pre_check_param <- function(frequency = NULL,
            is.null(.demetra$method),
            is.null(.demetra$sa)
     )){
-        .demetra$frequency <- 
+        .demetra$frequency <-
             .demetra$method <-
             .demetra$sa <-
             .demetra$data_ts <-
@@ -136,16 +136,16 @@ pre_check_param <- function(frequency = NULL,
             NULL
         return(use_previous_model)
     }
-    
+
     method <- method[1]
-    
-    if((is.null(spec) || identical(spec, .demetra$spec)) & 
-       (is.null(method) || identical(method, .demetra$method)) & 
-       (is.null(frequency) || identical(frequency, .demetra$frequency)) & 
+
+    if((is.null(spec) || identical(spec, .demetra$spec)) &
+       (is.null(method) || identical(method, .demetra$method)) &
+       (is.null(frequency) || identical(frequency, .demetra$frequency)) &
        (identical(data_y, .demetra$data_y))){
         use_previous_model <- TRUE
     }else{
-        .demetra$frequency <- 
+        .demetra$frequency <-
             .demetra$method <-
             .demetra$sa <-
             .demetra$spec <-

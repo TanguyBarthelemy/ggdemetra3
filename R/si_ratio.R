@@ -8,8 +8,8 @@
 #' @param xlim,ylim X and Y axis limits.
 #' @param main,xlab,ylab title, X and Y axis label.
 #' @param ... unused parameters.
-#' 
-#' @examples 
+#'
+#' @examples
 #' x <- rjd3x13::x13(ipi_c_eu[,"FR"])
 #' siratioplot(x)
 #' ggsiratioplot(x)
@@ -44,7 +44,7 @@ siratio.JD3_TRAMOSEATS_RSLTS <- function(x, ...){
         si <- exp(si)
         s <- exp(s)
         i <- exp(i)
-    } 
+    }
     res <- ts.union(si, s)
     colnames(res) <- c("si", "s")
     res
@@ -62,7 +62,7 @@ siratio.JD3_Object <- function(x, ...){
         if (tolower(res$mode) == "multiplicative"){
             res[[1]] <- exp(res[[1]])
             res[[2]] <- exp(res[[2]])
-        } 
+        }
     }
     res <- ts.union(res[[1]], res[[2]])
     colnames(res) <- c("si", "s")
@@ -136,11 +136,11 @@ siratioplot.default <- function(x, labels = NULL,
              col = col.mean, lwd = lwd.mean)
     for (i in labels) {
         sub <- data_plot$cycle == i
-        lines(data_plot[sub, "x"], data_plot[sub, "s"], 
+        lines(data_plot[sub, "x"], data_plot[sub, "s"],
               lwd = lwd.s,
               col = col.s, ...
         )
-        points(data_plot[sub, "x"], data_plot[sub, "si"], 
+        points(data_plot[sub, "x"], data_plot[sub, "si"],
                pch = 1, cex = cex.i,
                col = col.i,
                ...
@@ -193,14 +193,14 @@ ggsiratioplot.default <- function(x, labels = NULL,
     ggplot2::ggplot(data = data_plot, ggplot2::aes(x = x, group = cycle)) +
         ggplot2::geom_segment(ggplot2::aes(x=x0, y = y0,
                                            xend = x1, yend = y1),
-                              data=data_means, 
+                              data=data_means,
                               colour=col.mean,
-                              lwd = lwd.mean) + 
-        ggplot2::geom_line(ggplot2::aes(y=s), colour=col.s, lwd = lwd.s) + 
-        ggplot2::geom_point(ggplot2::aes(y=si), colour=col.i, cex = cex.i) + 
-        ggplot2::labs(title = main, 
+                              lwd = lwd.mean) +
+        ggplot2::geom_line(ggplot2::aes(y=s), colour=col.s, lwd = lwd.s) +
+        ggplot2::geom_point(ggplot2::aes(y=si), colour=col.i, cex = cex.i) +
+        ggplot2::labs(title = main,
                       x = xlab, y = ylab) +
-        ggplot2::scale_x_continuous(breaks = seq_along(labels), 
+        ggplot2::scale_x_continuous(breaks = seq_along(labels),
                                     labels = labels) +
         ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())
 }
@@ -233,4 +233,3 @@ data_siratio <- function(x, labels = NULL) {
          data_plot = data_plot)
 }
 utils::globalVariables(c("s", "si", "x0", "x1", "y0", "y1"))
-

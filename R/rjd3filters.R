@@ -70,16 +70,16 @@ ggplot_gain.finite_filters <- function(x, nxlab = 7,
     gasym <- rjd3filters::get_properties_function(x, "Asymmetric Gain")
     all_g_f <- c(list(gsym), gasym)
     names(all_g_f)[1] <- sprintf("q=%i", rjd3filters::upper_bound(x@sfilter))
-    
+
     col_to_plot <- sprintf("q=%i",q)
     col_to_plot <- col_to_plot[col_to_plot %in% names(all_g_f)]
     all_g_f <- all_g_f[col_to_plot]
     y_val <- sapply(all_g_f, function(f) f(x_values))
-    
+
     data = data.frame(x = x_values, y_val)
     colnames(data) <- c("x", colnames(y_val))
     dataGraph <- reshape2::melt(data, id.vars = "x")
-    
+
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
     ggplot2::ggplot(data = dataGraph,
@@ -99,7 +99,7 @@ ggplot_gain.moving_average <- function(x, nxlab = 7,
     x_values <- seq.int(xlim[1], xlim[2], length.out = n)
     gsym <- rjd3filters::get_properties_function(x, "Symmetric Gain")
     y_val <- gsym(x_values)
-    
+
     data = data.frame(x = x_values, value = y_val, variable = "x")
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
@@ -129,7 +129,7 @@ ggplot_phase.finite_filters <- function(x, nxlab = 7,
     gasym <- rjd3filters::get_properties_function(x, "Asymmetric Phase")
     all_g_f <- c(list(gsym), gasym)
     names(all_g_f)[1] <- sprintf("q=%i", rjd3filters::upper_bound(x@sfilter))
-    
+
     col_to_plot <- sprintf("q=%i",q)
     col_to_plot <- col_to_plot[col_to_plot %in% names(all_g_f)]
     all_g_f <- all_g_f[col_to_plot]
@@ -140,7 +140,7 @@ ggplot_phase.finite_filters <- function(x, nxlab = 7,
     data = data.frame(x = x_values, y_val)
     colnames(data) <- c("x", colnames(y_val))
     dataGraph <- reshape2::melt(data, id.vars = "x")
-    
+
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
     ggplot2::ggplot(data = dataGraph,
                     ggplot2::aes(x = x, y = value, group = variable,
@@ -159,7 +159,7 @@ ggplot_phase.moving_average <- function(x, nxlab = 7,
     x_values <- seq.int(xlim[1], xlim[2], length.out = n)
     gsym <- rjd3filters::get_properties_function(x, "Symmetric Phase")
     y_val <- gsym(x_values)
-    
+
     data = data.frame(x = x_values, value = y_val, variable = "x")
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
