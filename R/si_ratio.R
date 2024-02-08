@@ -215,7 +215,7 @@ data_siratio <- function(x, labels = NULL) {
         } else if (frequency(x)==2) {
             labels <- c("H1","H2")
         } else {
-            labels=c("")
+            labels <- c("")
         }
     }
     means <- tapply(x[,"s"], cycle(x), mean)

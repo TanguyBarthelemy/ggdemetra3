@@ -15,7 +15,7 @@ StatSa <- ggproto("StatSa", Stat,
                                                     frequency = frequency,
                                                     message = message,
                                                     new_data = new_data)
-                      method = method[1]
+                      method <- method[1]
                       data <- result[["data"]]
                       sa <- result[["sa"]]
                       component <- component[1]

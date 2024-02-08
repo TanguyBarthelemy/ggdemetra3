@@ -35,20 +35,20 @@ seasonal_adjustment <- function(data,
                 sa <- rjd3tramoseats::jtramoseats(data_ts, spec = spec)
             }
         } else if (method == "fractionalairlineestimation") {
-            spec$y = data_ts
-            spec$period = frequency
+            spec$y <- data_ts
+            spec$period <- frequency
             sa <- do.call(rjd3highfreq::fractionalAirlineEstimation, spec)
         } else if (method == "fractionalairline") {
-            spec$y = data_ts
-            spec$period = frequency
+            spec$y <- data_ts
+            spec$period <- frequency
             sa <- do.call(rjd3highfreq::fractionalAirlineDecomposition, spec)
         } else if (method == "multiairline") {
-            spec$y = data_ts
-            spec$period = frequency
+            spec$y <- data_ts
+            spec$period <- frequency
             sa <- do.call(rjd3highfreq::multiAirlineDecomposition, spec)
         } else if (method == "x11-extended") {
-            spec$y = data_ts
-            spec$period = frequency
+            spec$y <- data_ts
+            spec$period <- frequency
             sa <- do.call(rjd3x11plus::x11plus, spec)
         } else if (method == "stl") {
             # spec$y = data_ts

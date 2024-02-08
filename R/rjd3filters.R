@@ -76,7 +76,7 @@ ggplot_gain.finite_filters <- function(x, nxlab = 7,
     all_g_f <- all_g_f[col_to_plot]
     y_val <- sapply(all_g_f, function(f) f(x_values))
 
-    data = data.frame(x = x_values, y_val)
+    data <- data.frame(x = x_values, y_val)
     colnames(data) <- c("x", colnames(y_val))
     dataGraph <- reshape2::melt(data, id.vars = "x")
 
@@ -100,7 +100,7 @@ ggplot_gain.moving_average <- function(x, nxlab = 7,
     gsym <- rjd3filters::get_properties_function(x, "Symmetric Gain")
     y_val <- gsym(x_values)
 
-    data = data.frame(x = x_values, value = y_val, variable = "x")
+    data <- data.frame(x = x_values, value = y_val, variable = "x")
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
     ggplot2::ggplot(data = data,
@@ -137,7 +137,7 @@ ggplot_phase.finite_filters <- function(x, nxlab = 7,
     if(normalized){
         y_val[-1,] <- y_val[-1,] / x_values[-1]
     }
-    data = data.frame(x = x_values, y_val)
+    data <- data.frame(x = x_values, y_val)
     colnames(data) <- c("x", colnames(y_val))
     dataGraph <- reshape2::melt(data, id.vars = "x")
 
@@ -160,7 +160,7 @@ ggplot_phase.moving_average <- function(x, nxlab = 7,
     gsym <- rjd3filters::get_properties_function(x, "Symmetric Phase")
     y_val <- gsym(x_values)
 
-    data = data.frame(x = x_values, value = y_val, variable = "x")
+    data <- data.frame(x = x_values, value = y_val, variable = "x")
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
     ggplot2::ggplot(data = data,
