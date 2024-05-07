@@ -15,23 +15,23 @@ seasonal_adjustment <- function(data,
                                           spec = spec, new_data = new_data,
                                           data_y = data$y)
 
-    if(use_previous_model){
+    if (use_previous_model){
         sa <- .demetra$sa
         data_ts <- .demetra$data_ts
-    }else{
+    } else{
         data_ts <- .demetra$data_ts <-
             dataframe2ts(data = data, frequency = frequency, message = message)
 
         if (method == "x13") {
             if (is.null(spec)) {
                 sa <- rjd3x13::jx13(data_ts)
-            }else{
+            } else{
                 sa <- rjd3x13::jx13(data_ts, spec = spec)
             }
         } else if (method == "tramoseats") {
             if (is.null(spec)) {
                 sa <- rjd3tramoseats::jtramoseats(data_ts)
-            }else{
+            } else{
                 sa <- rjd3tramoseats::jtramoseats(data_ts, spec = spec)
             }
         } else if (method == "fractionalairlineestimation") {
@@ -79,7 +79,7 @@ dataframe2ts <- function(data, frequency = NULL, message = TRUE){
         }
         dates <- years + (months - 1) / frequency
         first_date <- dates[1]
-    }else{
+    } else{
         # Numeric format
         if (is.null(frequency)) {
             years <- trunc(round(dates, 3))
@@ -102,7 +102,7 @@ ts2dataframe <- function(x){
     if (is.ts(x) & !is.mts(x)) {
         data.frame(x = as.numeric(time(x)),
                    y = as.numeric(x))
-    }else{
+    } else{
         NULL
     }
 
@@ -123,7 +123,7 @@ pre_check_param <- function(frequency = NULL,
                             new_data = TRUE,
                             data_y = NULL){
     use_previous_model <- FALSE
-    if(any(new_data,
+    if (any(new_data,
            is.null(.demetra$frequency),
            is.null(.demetra$method),
            is.null(.demetra$sa)
@@ -139,12 +139,12 @@ pre_check_param <- function(frequency = NULL,
 
     method <- method[1]
 
-    if((is.null(spec) || identical(spec, .demetra$spec)) &
+    if ((is.null(spec) || identical(spec, .demetra$spec)) &
        (is.null(method) || identical(method, .demetra$method)) &
        (is.null(frequency) || identical(frequency, .demetra$frequency)) &
        (identical(data_y, .demetra$data_y))){
         use_previous_model <- TRUE
-    }else{
+    } else{
         .demetra$frequency <-
             .demetra$method <-
             .demetra$sa <-

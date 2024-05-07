@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   fig.dim = c(7,4)*1.4,
   out.width = "100%"
 )
-library(ggdemetra3)
+library("ggdemetra3")
 ```
 
 # ggdemetra3 <img src="man/figures/logo.png" align="right" alt="" />
@@ -27,7 +27,7 @@ library(ggdemetra3)
 ## Overview
 
 ggdemetra3 is an extension of [ggplot2](https://github.com/tidyverse/ggplot2) to add seasonal adjustment statistics to your plots. 
-The seasonal adjustment process is done with [rjdemetra3](https://github.com/rjdemetra/rjdemetra3) that is an R interface to [JDemetra+](https://github.com/jdemetra/jdemetra-app), the seasonal adjustment software [officially recommended](https://ec.europa.eu/eurostat/cros/system/files/Jdemetra_%20release.pdf) to the members of the European Statistical System (ESS) and the European System of Central Banks. 
+The seasonal adjustment process is done with [rjdemetra3](https://github.com/rjdverse/rjdemetra3) that is an R interface to [JDemetra+](https://github.com/jdemetra/jdemetra-app), the seasonal adjustment software [officially recommended](https://ec.europa.eu/eurostat/cros/system/files/Jdemetra_%20release.pdf) to the members of the European Statistical System (ESS) and the European System of Central Banks. 
 rjdemetra3 implements the two leading seasonal adjustment methods [TRAMO/SEATS+](http://gretl.sourceforge.net/tramo/tramo-seats.html) and [X-12ARIMA/X-13ARIMA-SEATS](https://www.census.gov/data/software/x13as.html).
 
 There are 4 main functionnalities in `ggdemetra3` depending of what you want to add in the graphic:
@@ -56,9 +56,10 @@ If no new data or seasonal adjustment specification is specified (method or spec
 In the following examples, the seasonal adjustment will be perform with X-13-ARIMA with working day adjustment and no gradual easter effect adjustment (it is the specification that has the most economic sense for the industrial production index).
 
 To add the seasonal adjusted series and the forecasts of the input data and of the seasonal adjusted series:
+
 ```{r sa, warning=FALSE, message=FALSE}
 library(ggdemetra3)
-spec <- rjd3x13::spec_x13("rsa3")
+spec <- rjd3x13::x13_spec("rsa3")
 spec <- rjd3toolkit::set_tradingdays(spec, option = "WorkingDays")
 p_ipi_fr <- ggplot(data = ipi_c_eu_df, mapping = aes(x = date, y = FR)) +
     geom_line() +
@@ -73,6 +74,7 @@ p_sa
 ```
 
 To add the outliers at the bottom of the plot with an arrow to the data point and the estimated coefficients:
+
 ```{r out}
 p_sa + 
     geom_outlier(geom = "label_repel",
@@ -93,6 +95,7 @@ p_sa +
 ```
 
 To add a table of diagnostics below the plot:
+
 ```{r diag, warning=FALSE}
 diagnostics <- c(`Q-M2` = "m-statistics.q-m2",
                  `Residual qs-test (p-value)` = "diagnostics.seas-sa-qs",
@@ -112,6 +115,7 @@ See the [vignette](https://aqlt.github.io/ggdemetra3/articles/ggdemetra3.html) f
 
 Note that `ts` objects cannot be directly used in `ggplot2`.
 To convert `ts` or `mts` object to `data.frame`, you can use the `ts2df()` function.
+
 ```{r, eval = FALSE}
 ipi_c_eu_df <- ts2df(ipi_c_eu)
 ```
@@ -137,6 +141,7 @@ p_sa
 The different components of seasonal adjustment models can also be extracted through  `calendar()`, `calendaradj()`, `irregular()`, `trendcycle()`, `seasonal()`, `seasonaladj()`, `trendcycle()` and `raw()`.
 
 `ggdemetra3` also provides `autoplot()` functions to plot seasonal adjustment models:
+
 ```{r autoplot}
 mod <- rjd3x13::x13(ipi_c_eu[,"FR"])
 autoplot(mod)
@@ -150,3 +155,14 @@ For X-13 and TRAMO-SEATS, the SI ratio can also be plotted with `siratioplot()` 
 ```{r si-ratio}
 siratioplot(mod)
 ```
+
+
+## Package Maintenance and contributing
+
+Any contribution is welcome and should be done through pull requests and/or issues.
+pull requests should include **updated tests** and **updated documentation**. If functionality is changed, docstrings should be added or updated.
+
+
+## Licensing
+
+The code of this project is licensed under the [European Union Public Licence (EUPL)](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12).

@@ -134,7 +134,7 @@ ggplot_phase.finite_filters <- function(x, nxlab = 7,
     col_to_plot <- col_to_plot[col_to_plot %in% names(all_g_f)]
     all_g_f <- all_g_f[col_to_plot]
     y_val <- sapply(all_g_f, function(f) f(x_values))
-    if(normalized){
+    if (normalized){
         y_val[-1,] <- y_val[-1,] / x_values[-1]
     }
     data <- data.frame(x = x_values, y_val)

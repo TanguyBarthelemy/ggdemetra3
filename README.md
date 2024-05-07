@@ -14,7 +14,7 @@
 ggdemetra3 is an extension of
 [ggplot2](https://github.com/tidyverse/ggplot2) to add seasonal
 adjustment statistics to your plots. The seasonal adjustment process is
-done with [rjdemetra3](https://github.com/rjdemetra/rjdemetra3) that is
+done with [rjdemetra3](https://github.com/rjdverse/rjdemetra3) that is
 an R interface to [JDemetra+](https://github.com/jdemetra/jdemetra-app),
 the seasonal adjustment software [officially
 recommended](https://ec.europa.eu/eurostat/cros/system/files/Jdemetra_%20release.pdf)
@@ -69,7 +69,7 @@ and of the seasonal adjusted series:
 
 ``` r
 library(ggdemetra3)
-spec <- rjd3x13::spec_x13("rsa3")
+spec <- rjd3x13::x13_spec("rsa3")
 spec <- rjd3toolkit::set_tradingdays(spec, option = "WorkingDays")
 p_ipi_fr <- ggplot(data = ipi_c_eu_df, mapping = aes(x = date, y = FR)) +
     geom_line() +
@@ -194,3 +194,15 @@ siratioplot(mod)
 ```
 
 <img src="man/figures/README-si-ratio-1.png" width="100%" style="display: block; margin: auto;" />
+
+## Package Maintenance and contributing
+
+Any contribution is welcome and should be done through pull requests
+and/or issues. pull requests should include **updated tests** and
+**updated documentation**. If functionality is changed, docstrings
+should be added or updated.
+
+## Licensing
+
+The code of this project is licensed under the [European Union Public
+Licence (EUPL)](https://joinup.ec.europa.eu/page/eupl-text-11-12).
