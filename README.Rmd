@@ -47,7 +47,7 @@ Since rjdemetra3 requires Java SE 17 or later version, the same requirements are
 remotes::install_github("AQLT/ggdemetra3")
 ```
 
-If you have troubles with the installation of ggdemetra3, check the [installation manual](https://github.com/jdemetra/rjdemetra/wiki/Installation-manual).
+If you have troubles with the installation of ggdemetra3, check the [installation manual](https://github.com/rjdverse/rjdemetra/wiki/Installation-manual).
 
 ## Usage
 

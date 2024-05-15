@@ -49,7 +49,7 @@ remotes::install_github("AQLT/ggdemetra3")
 
 If you have troubles with the installation of ggdemetra3, check the
 [installation
-manual](https://github.com/jdemetra/rjdemetra/wiki/Installation-manual).
+manual](https://github.com/rjdverse/rjdemetra/wiki/Installation-manual).
 
 ## Usage
 
