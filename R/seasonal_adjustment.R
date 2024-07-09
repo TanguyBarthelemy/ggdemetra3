@@ -99,7 +99,7 @@ dataframe2ts <- function(data, frequency = NULL, message = TRUE){
 
 }
 ts2dataframe <- function(x){
-    if (is.ts(x) & !is.mts(x)) {
+    if (is.ts(x) && !is.mts(x)) {
         data.frame(x = as.numeric(time(x)),
                    y = as.numeric(x))
     } else {
@@ -139,9 +139,9 @@ pre_check_param <- function(frequency = NULL,
 
     method <- method[1]
 
-    if ((is.null(spec) || identical(spec, .demetra$spec)) &
-       (is.null(method) || identical(method, .demetra$method)) &
-       (is.null(frequency) || identical(frequency, .demetra$frequency)) &
+    if ((is.null(spec) || identical(spec, .demetra$spec)) &&
+       (is.null(method) || identical(method, .demetra$method)) &&
+       (is.null(frequency) || identical(frequency, .demetra$frequency)) &&
        (identical(data_y, .demetra$data_y))){
         use_previous_model <- TRUE
     } else {
