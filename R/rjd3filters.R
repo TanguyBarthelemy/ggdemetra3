@@ -184,7 +184,7 @@ trailingzero_as_na <- function(x){
 }
 
 #'@importFrom ggplot2 theme_grey `%+replace%`
-theme_ggplot <- function (base_size = 11, base_family = "") {
+theme_ggplot <- function(base_size = 11, base_family = "") {
     theme_grey(base_size = base_size, base_family = base_family) %+replace%
         ggplot2::theme(panel.background = ggplot2::element_rect(fill = "white", colour = NA),
                        panel.border = ggplot2::element_rect(fill = NA, colour = "grey20"),

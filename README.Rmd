@@ -67,7 +67,7 @@ p_ipi_fr <- ggplot(data = ipi_c_eu_df, mapping = aes(x = date, y = FR)) +
          x = NULL, y = NULL)
 p_sa <- p_ipi_fr +
     geom_sa(component = "y_f(12)", linetype = 2,
-            spec = spec) + 
+            spec = spec) +
     geom_sa(component = "sa", color = "red") +
     geom_sa(component = "sa_f", color = "red", linetype = 2)
 p_sa
@@ -76,7 +76,7 @@ p_sa
 To add the outliers at the bottom of the plot with an arrow to the data point and the estimated coefficients:
 
 ```{r out}
-p_sa + 
+p_sa +
     geom_outlier(geom = "label_repel",
                  coefficients = TRUE,
                  ylim = c(NA, 65), force = 10,
@@ -88,9 +88,9 @@ p_sa +
 To add the ARIMA model:
 
 ```{r arima}
-p_sa + 
+p_sa +
     geom_arima(geom = "label",
-               x_arima = -Inf, y_arima = -Inf, 
+               x_arima = -Inf, y_arima = -Inf,
                vjust = -1, hjust = -0.1)
 ```
 
@@ -103,9 +103,9 @@ diagnostics <- c(`Q-M2` = "m-statistics.q-m2",
 p_diag <- ggplot(data = ipi_c_eu_df, mapping = aes(x = date, y = FR)) +
     geom_diagnostics(diagnostics = diagnostics,
                      table_theme = gridExtra::ttheme_default(base_size = 8),
-                     message = FALSE) + 
+                     message = FALSE) +
     theme_void()
-    
+
 gridExtra::grid.arrange(p_sa, p_diag,
              nrow = 2, heights  = c(4, 1.5))
 ```
@@ -132,7 +132,7 @@ p_us_init_claims <- ggplot(data = usclaims[usclaims$date <= "2019-12-01",], mapp
 p_sa <- p_us_init_claims +
     geom_sa(component = "sa", linetype = 2,frequency = 52,
             method ="multiairline",
-            col = "red") 
+            col = "red")
 p_sa
 ```
 

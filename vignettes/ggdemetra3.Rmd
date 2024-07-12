@@ -81,7 +81,7 @@ To add other components of the seasonal adjustment, use the `component` paramete
 ```{r}
 p_sa <- p_ipi_fr +
     geom_sa(component = "y_f(12)", linetype = 2, message = FALSE,
-            spec = spec) + 
+            spec = spec) +
     geom_sa(component = "sa", color = "red") +
     geom_sa(component = "sa_f", color = "red", linetype = 2)
 p_sa
@@ -107,7 +107,7 @@ p_sa + geom_outlier(geom = "label")
 
 They can be plotted in more readable way using the parameters of `ggrepel::geom_label_repel`:
 ```{r}
-p_sa + 
+p_sa +
     geom_outlier(geom = "label_repel",
                  ylim = c(NA, 65), force = 10,
                  arrow = arrow(length = unit(0.03, "npc"),
@@ -116,7 +116,7 @@ p_sa +
 
 Use the parameters `first_date` and `last_date` to only have the outliers in a precise time interval. For example, to only plot the outliers from 2009 use `first_date = 2009`:
 ```{r}
-p_sa + 
+p_sa +
     geom_outlier(geom = "label_repel",
                  first_date = 2009,
                  ylim = c(NA, 65), force = 10,
@@ -130,7 +130,7 @@ The ARIMA model used pre-adjustment process can be added to the plot with `geom_
 arima()`. The parameter `geom = "label"` draws a rectangle behind the ARIMA model, making it easier to read:
 
 ```{r}
-p_sa + 
+p_sa +
     geom_arima(geom = "label",
                x_arima = -Inf, y_arima = -Inf, 
                vjust = -1, hjust = -0.1)
@@ -144,7 +144,7 @@ A table with some diagnostics on the seasonal adjustment process can be added wi
 diagnostics <- c("m-statistics.q-m2",
                  "diagnostics.seas-sa-qs",
                  "diagnostics.seas-sa-f")
-p_sa + 
+p_sa +
     geom_diagnostics(diagnostics = diagnostics,
                      ymin = 58, ymax = 72, xmin = 2010,
                      table_theme = gridExtra::ttheme_default(base_size = 8))
@@ -156,7 +156,7 @@ To customize the names of the diagnostics in the plot, pass a named vector to th
 diagnostics <- c(`Q-M2` = "m-statistics.q-m2",
                  `Residual qs-test (p-value)` = "diagnostics.seas-sa-qs",
                  `Residual f-test (p-value)` = "diagnostics.seas-sa-f")
-p_sa + 
+p_sa +
     geom_diagnostics(diagnostics = diagnostics,
                      ymin = 58, ymax = 72, xmin = 2010,
                      table_theme = gridExtra::ttheme_default(base_size = 8))
@@ -171,7 +171,7 @@ p_diag <- ggplot(data = ipi_c_eu_df, mapping = aes(x = date, y = FR))  +
                      table_theme = gridExtra::ttheme_default(base_size = 8),
                      message = FALSE) + 
     theme_void()
-    
+
 gridExtra::grid.arrange(p_sa, p_diag,
              nrow = 2, heights  = c(4, 1.5))
 ```
