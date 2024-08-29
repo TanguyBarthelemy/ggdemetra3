@@ -132,7 +132,7 @@ arima()`. The parameter `geom = "label"` draws a rectangle behind the ARIMA mode
 ```{r}
 p_sa +
     geom_arima(geom = "label",
-               x_arima = -Inf, y_arima = -Inf, 
+               x_arima = -Inf, y_arima = -Inf,
                vjust = -1, hjust = -0.1)
 ```
 
@@ -169,7 +169,7 @@ p_diag <- ggplot(data = ipi_c_eu_df, mapping = aes(x = date, y = FR))  +
     geom_diagnostics(diagnostics = diagnostics,
                      spec = spec,
                      table_theme = gridExtra::ttheme_default(base_size = 8),
-                     message = FALSE) + 
+                     message = FALSE) +
     theme_void()
 
 gridExtra::grid.arrange(p_sa, p_diag,
