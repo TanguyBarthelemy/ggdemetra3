@@ -24,15 +24,15 @@ seasonal_adjustment <- function(data,
 
         if (method == "x13") {
             if (is.null(spec)) {
-                sa <- rjd3x13::jx13(data_ts)
-            } else {
-                sa <- rjd3x13::jx13(data_ts, spec = spec)
+                sa <- rjd3x13::.jx13(data_ts)
+            }else{
+                sa <- rjd3x13::.jx13(data_ts, spec = spec)
             }
         } else if (method == "tramoseats") {
             if (is.null(spec)) {
-                sa <- rjd3tramoseats::jtramoseats(data_ts)
-            } else {
-                sa <- rjd3tramoseats::jtramoseats(data_ts, spec = spec)
+                sa <- rjd3tramoseats::.jtramoseats(data_ts)
+            }else{
+                sa <- rjd3tramoseats::.jtramoseats(data_ts, spec = spec)
             }
         } else if (method == "fractionalairlineestimation") {
             spec$y <- data_ts
