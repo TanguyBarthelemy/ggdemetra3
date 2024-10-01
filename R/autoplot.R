@@ -89,7 +89,7 @@ autoplot_rjd <- function(object,
                                                      each = nrow(data_f)), levels = colnames(data_f)))
         data_f <- data_f[,components_, drop = FALSE]
         colnames(data_f) <- colnames(data)
-        p <- p + ggplot2::geom_line(data = data_f_plot, linetype = 2)
+        p <- p + ggplot2::geom_line(data = data_f_plot, linetype = 2L)
     }
     p + ggplot2::facet_grid("label ~ .", scales = "free_y",
                             switch = "y") +
