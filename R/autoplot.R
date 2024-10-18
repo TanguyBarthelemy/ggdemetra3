@@ -156,4 +156,3 @@ autoplot.JDFractionalAirlineDecomposition <- function(object,
                    dates = dates,
                    ...)
 }
-
