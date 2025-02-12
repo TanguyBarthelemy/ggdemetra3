@@ -160,6 +160,9 @@ ggplot_phase.moving_average <- function(x, nxlab = 7,
     gsym <- rjd3filters::get_properties_function(x, "Symmetric Phase")
     y_val <- gsym(x_values)
     
+    if(normalized){
+        y_val[-1,] <- y_val[-1,] / x_values[-1]
+    }
     data = data.frame(x = x_values, value = y_val, variable = "x")
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
     x_lab_at <- seq(xlim[1]/pi, xlim[2]/pi, length.out = nxlab)
