@@ -23,7 +23,7 @@ library("ggdemetra3")
 <!-- [![CRAN last release](http://www.r-pkg.org/badges/last-release/ggdemetra3)](https://cran.r-project.org/package=ggdemetra3) -->
 <!-- [![CRAN monthly downloads](http://cranlogs.r-pkg.org/badges/ggdemetra3?color=lightgrey)](https://cran.r-project.org/package=ggdemetra3) -->
 <!-- [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/ggdemetra3?color=lightgrey)](https://cran.r-project.org/package=ggdemetra3) -->
-[![Mentioned in Awesome Official Statistics ](https://awesome.re/mentioned-badge.svg)](http://www.awesomeofficialstatistics.org)
+[![Mentioned in Awesome Official Statistics ](https://awesome.re/mentioned-badge.svg)](https://github.com/SNStatComp/awesome-official-statistics-software)
 
 ## Overview
 
