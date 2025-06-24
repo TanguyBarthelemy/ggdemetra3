@@ -110,7 +110,7 @@ GeomDiagnostics <- ggproto("GeomDiagnostics", Geom,
                              ##
                              grid::editGrob(grob, vp = vp)
                          },
-                         default_aes = aes_(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, x = NULL, y = NULL)
+                         default_aes = aes(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, x = NULL, y = NULL)
 )
 
 StatDiagnostics <- ggproto("StatDiagnostics", Stat, 
