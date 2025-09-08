@@ -3,6 +3,7 @@ seasonal_adjustment <- function(data,
                                 method = c("x13","tramoseats",
                                            "x11-extended", "fractionalairline", "multiairline"),
                                 spec = NULL,
+                                context = NULL,
                                 frequency = NULL,
                                 message = TRUE,
                                 new_data = TRUE){
@@ -24,15 +25,15 @@ seasonal_adjustment <- function(data,
         
         if (method == "x13") {
             if (is.null(spec)) {
-                sa <- rjd3x13::.jx13(data_ts)
+                sa <- rjd3x13::.jx13(data_ts, context = context)
             }else{
-                sa <- rjd3x13::.jx13(data_ts, spec = spec)
+                sa <- rjd3x13::.jx13(data_ts, spec = spec, context = context)
             }
         } else if (method == "tramoseats") {
             if (is.null(spec)) {
-                sa <- rjd3tramoseats::.jtramoseats(data_ts)
+                sa <- rjd3tramoseats::.jtramoseats(data_ts, context = context)
             }else{
-                sa <- rjd3tramoseats::.jtramoseats(data_ts, spec = spec)
+                sa <- rjd3tramoseats::.jtramoseats(data_ts, spec = spec, context = context)
             }
         } else if (method == "fractionalairlineestimation") {
             spec$y = data_ts
